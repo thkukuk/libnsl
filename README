@@ -1,8 +1,8 @@
 
 See the file COPYING for copying restrictions.
 
-This package contains libnsl. libnsl is a library containing the
-public client interface for NIS(YP) and NIS+.
+This package contains the libnsl library. This library contains
+the public client interface for NIS(YP) and NIS+.
 
 This code was formerly part of glibc, but is now standalone to
 be able to link against TI-RPC for IPv6 support.
