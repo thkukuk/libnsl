@@ -1,3 +1,7 @@
 2015-06-26  Thorsten Kukuk  <kukuk@thkukuk.de>
 
+	* src/Makefile: Remove yppasswd.[hx]
+	* src/rpcsvc/yppasswd.h: Removed.
+	* src/rpcsvc/yppasswd.x: Removed.
+
 	* Initial version, standalone port from glibc version

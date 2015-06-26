@@ -16,8 +16,7 @@ rpcsvcdir = $(includedir)/rpcsvc
 AM_CFLAGS = @WARNFLAGS@ -D_REENTRANT=1
 AM_CPPFLAGS = -I$(srcdir) @TIRPC_CFLAGS@ -DLOCALEDIR=\"$(localedir)\"
 
-rpcsvc_HEADERS = rpcsvc/ypclnt.h rpcsvc/yppasswd.x rpcsvc/ypupd.h \
-	rpcsvc/yppasswd.h rpcsvc/yp_prot.h rpcsvc/yp.x
+rpcsvc_HEADERS = rpcsvc/ypclnt.h rpcsvc/ypupd.h rpcsvc/yp_prot.h rpcsvc/yp.x
 
 noinst_HEADERS = internal.h
 
