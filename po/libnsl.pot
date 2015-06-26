@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Thorsten Kukuk
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: libnsl 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-26 09:54+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/ypbinderr_string.c:42 src/yperr_string.c:40
+msgid "Success"
+msgstr ""
+
+#: src/ypbinderr_string.c:45
+msgid "Internal ypbind error"
+msgstr ""
+
+#: src/ypbinderr_string.c:48
+msgid "Domain not bound"
+msgstr ""
+
+#: src/ypbinderr_string.c:51
+msgid "System resource allocation failure"
+msgstr ""
+
+#: src/ypbinderr_string.c:54
+msgid "Domain doesn't exist"
+msgstr ""
+
+#: src/ypbinderr_string.c:57
+msgid "Unknown ypbind error"
+msgstr ""
+
+#: src/yperr_string.c:43
+msgid "Request arguments bad"
+msgstr ""
+
+#: src/yperr_string.c:46
+msgid "RPC failure on NIS operation"
+msgstr ""
+
+#: src/yperr_string.c:49
+msgid "Can't bind to server which serves this domain"
+msgstr ""
+
+#: src/yperr_string.c:52
+msgid "No such map in server's domain"
+msgstr ""
+
+#: src/yperr_string.c:55
+msgid "No such key in map"
+msgstr ""
+
+#: src/yperr_string.c:58
+msgid "Internal NIS error"
+msgstr ""
+
+#: src/yperr_string.c:61
+msgid "Local resource allocation failure"
+msgstr ""
+
+#: src/yperr_string.c:64
+msgid "No more records in map database"
+msgstr ""
+
+#: src/yperr_string.c:67
+msgid "Can't communicate with portmapper"
+msgstr ""
+
+#: src/yperr_string.c:70
+msgid "Can't communicate with ypbind"
+msgstr ""
+
+#: src/yperr_string.c:73
+msgid "Can't communicate with ypserv"
+msgstr ""
+
+#: src/yperr_string.c:76
+msgid "Local domain name not set"
+msgstr ""
+
+#: src/yperr_string.c:79
+msgid "NIS map database is bad"
+msgstr ""
+
+#: src/yperr_string.c:82
+msgid "NIS client/server version mismatch - can't supply service"
+msgstr ""
+
+#: src/yperr_string.c:85
+msgid "Permission denied"
+msgstr ""
+
+#: src/yperr_string.c:88
+msgid "Database is busy"
+msgstr ""
+
+#: src/yperr_string.c:91
+msgid "Unknown NIS error code"
+msgstr ""

@@ -1,0 +1,13 @@
+# List of source files which contain translatable strings.
+src/do_ypcall.c
+src/ypbinderr_string.c
+src/yperr_string.c
+src/yp_first.c
+src/yp_get_default_domain.c
+src/yp_maplist.c
+src/yp_master.c
+src/yp_match.c
+src/yp_next.c
+src/yp_order.c
+src/ypprot_err.c
+src/yp_xdr.c
