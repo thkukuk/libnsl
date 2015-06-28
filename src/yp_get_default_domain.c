@@ -19,12 +19,12 @@
 #endif
 
 #include <unistd.h>
-#include <pthread.h>
 #include <rpcsvc/nis.h>
 #include <rpcsvc/ypclnt.h>
 
-static pthread_mutex_t ypdomainname_lock = PTHREAD_MUTEX_INITIALIZER;
+#include "libc-lock.h"
 
+__libc_lock_define_initialized (static, domainname_lock)
 static char ypdomainname[NIS_MAXNAMELEN + 1];
 
 int
@@ -33,7 +33,7 @@ yp_get_default_domain (char **outdomain)
   int result = YPERR_SUCCESS;;
   *outdomain = NULL;
 
-  pthread_mutex_lock (&ypdomainname_lock);
+  __libc_lock_lock (domainname_lock);
 
   if (ypdomainname[0] == '\0')
     {
@@ -51,7 +51,7 @@ yp_get_default_domain (char **outdomain)
   else
     *outdomain = ypdomainname;
 
-  pthread_mutex_unlock (&ypdomainname_lock);
+  __libc_lock_unlock (domainname_lock);
 
   return result;
 }

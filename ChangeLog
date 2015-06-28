@@ -1,6 +1,43 @@
+2015-06-27  Thorsten Kukuk  <kukuk@thkukuk.de>
+
+	* src/nisplus/nis_add.c: Adjust includes.
+	* src/nisplus/nis_addmember.c: Likewise.
+	* src/nisplus/nis_callback.c: Likewise.
+	* src/nisplus/nis_checkpoint.c: Likewise.
+	* src/nisplus/nis_clone_dir.c: Likewise.
+	* src/nisplus/nis_clone_obj.c: Likewise.
+	* src/nisplus/nis_defaults.c: Likewise.
+	* src/nisplus/nis_destroygroup.c: Likewise.
+	* src/nisplus/nis_domain_of.c: Likewise.
+	* src/nisplus/nis_domain_of_r.c: Likewise.
+	* src/nisplus/nis_file.c: Likewise.
+	* src/nisplus/nis_findserv.c: Likewise.
+	* src/nisplus/nis_free.c: Likewise.
+	* src/nisplus/nis_getservlist.c: Likewise.
+	* src/nisplus/nis_ismember.c: Likewise.
+	* src/nisplus/nis_local_names.c: Likewise.
+	* src/nisplus/nis_lookup.c: Likewise.
+	* src/nisplus/nis_mkdir.c: Likewise.
+	* src/nisplus/nis_modify.c: Likewise.
+	* src/nisplus/nis_ping.c: Likewise.
+	* src/nisplus/nis_print.c: Likewise.
+	* src/nisplus/nis_print_group_entry.c: Likewise.
+	* src/nisplus/nis_remove.c: Likewise.
+	* src/nisplus/nis_removemember.c: Likewise.
+	* src/nisplus/nis_rmdir.c: Likewise.
+	* src/nisplus/nis_server.c: Likewise.
+	* src/nisplus/nis_subr.c: Likewise.
+	* src/nisplus/nis_table.c: Likewise.
+	* src/nisplus/nis_util.c: Likewise.
+	* src/nisplus/nis_verifygroup.c: Likewise.
+	* src/nisplus/nis_xdr.c: Likewise.
+
 2015-06-26  Thorsten Kukuk  <kukuk@thkukuk.de>
 
-	* src/Makefile: Remove yppasswd.[hx]
+	* src/nisplus/nis_error.c: New, implement nis_error functions.
+	* src/Makefile.am: Add nis_error.c
+
+	* src/Makefile.am: Remove yppasswd.[hx]
 	* src/rpcsvc/yppasswd.h: Removed.
 	* src/rpcsvc/yppasswd.x: Removed.
 
