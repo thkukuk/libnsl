@@ -1,3 +1,16 @@
+2015-07-08  Thorsten Kukuk  <kukuk@thkukuk.de>
+
+	* configure.ac: Check for tirpc or sunrpc
+	* src/do_ypcall.c: Adjust code to compile with tirpc and sunrpc
+	* src/nisplus/nis_callback.c: Likewise.
+	* src/nisplus/nis_domain_of.c: Likewise.
+	* src/nisplus/nis_findserv.c: Likewise.
+	* src/nisplus/nis_subr.c: Likewise.
+	* src/nisplus/nis_table.c: Likewise.
+	* src/nisplus/nis_util.c: Likewise.
+	* src/taddr2ipstr.c: Likewise.
+	* src/yp_xdr.c: Likewise.
+
 2015-06-27  Thorsten Kukuk  <kukuk@thkukuk.de>
 
 	* src/nisplus/nis_add.c: Adjust includes.

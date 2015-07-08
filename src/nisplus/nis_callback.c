@@ -56,7 +56,7 @@ static nis_cb *data;
 __libc_lock_define_initialized (static, callback_lock)
 
 
-#if 0
+#if 0 /* XXX */
 static char *
 __nis_getpkey(const char *sname)
 {
@@ -203,7 +203,7 @@ static nis_error
 internal_nis_do_callback (struct dir_binding *bptr, netobj *cookie,
 			  struct nis_cb *cb)
 {
-#if 1
+#if defined (HAVE_TIRPC)
   return NIS_UNAVAIL;
 #else
   struct timeval TIMEOUT = {25, 0};
@@ -307,7 +307,7 @@ __nis_create_callback (int (*callback) (const_nis_name, const nis_object *,
     }
   else
     {
-#if 0
+#if 0 /* XXX */
       if ((cb->serv->pkey.n_bytes = __nis_getpkey (cb->serv->name)) == NULL)
 	{
 	  cb->serv->pkey.n_len = 0;
@@ -336,7 +336,11 @@ __nis_create_callback (int (*callback) (const_nis_name, const nis_object *,
       nomsg = 1;
       goto failed;
     }
+#if defined(HAVE_TIRPC)
   cb->sock = cb->xprt->xp_fd;
+#else
+  cb->sock = cb->xprt->xp_sock;
+#endif
   if (!svc_register (cb->xprt, CB_PROG, CB_VERS, cb_prog_1, 0))
     {
       xprt_unregister (cb->xprt);

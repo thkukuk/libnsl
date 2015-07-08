@@ -71,8 +71,7 @@ yp_bind_client_create_v3 (const char *domain, dom_binding *ysd,
   strncpy (ysd->dom_domain, domain, YPMAXDOMAIN);
   ysd->dom_domain[YPMAXDOMAIN] = '\0';
 
-  ysd->dom_client = clnt_create_timed (ysd->server, YPPROG, YPVERS,
-				       "udp", NULL);
+  ysd->dom_client = clnt_create (ysd->server, YPPROG, YPVERS, "udp");
   if (ysd->dom_client == NULL)
     clnt_pcreateerror ("yp_bind_client_create_v3");
 }
@@ -85,8 +84,7 @@ yp_bind_client_create_v2 (const char *domain, dom_binding *ysd,
   strncpy (ysd->dom_domain, domain, YPMAXDOMAIN);
   ysd->dom_domain[YPMAXDOMAIN] = '\0';
 
-  ysd->dom_client = clnt_create_timed (ysd->server, YPPROG, YPVERS,
-				       "udp", NULL);
+  ysd->dom_client = clnt_create (ysd->server, YPPROG, YPVERS, "udp");
   if (ysd->dom_client == NULL)
     clnt_pcreateerror ("yp_bind_client_create_v2");
 }
@@ -112,12 +110,12 @@ yp_bind_file (const char *domain, dom_binding *ysd)
 
       if (!status)
         {
-          xdr_free ((xdrproc_t)xdr_ypbind3_binding, &ypb3);
+          xdr_free ((xdrproc_t)xdr_ypbind3_binding, (char *)&ypb3);
 	  fclose (in);
 	  goto version2;
         }
       yp_bind_client_create_v3 (domain, ysd, &ypb3);
-      xdr_free ((xdrproc_t)xdr_ypbind3_binding, &ypb3);
+      xdr_free ((xdrproc_t)xdr_ypbind3_binding, (char *)&ypb3);
       fclose (in);
     }
   else
@@ -147,7 +145,7 @@ yp_bind_ypbindprog (const char *domain, dom_binding *ysd)
 {
   CLIENT *client;
 
-  client = clnt_create_timed ("localhost", YPBINDPROG, YPBINDVERS, "tcp", NULL);
+  client = clnt_create ("localhost", YPBINDPROG, YPBINDVERS, "tcp");
   if (client != NULL)
     {
       enum clnt_stat ret;
@@ -195,8 +193,7 @@ yp_bind_ypbindprog (const char *domain, dom_binding *ysd)
 
     try_v2:
       /* Fallback to protocol v2 in error case */
-      client = clnt_create_timed ("localhost", YPBINDPROG, YPBINDVERS_2,
-				  "tcp", NULL);
+      client = clnt_create ("localhost", YPBINDPROG, YPBINDVERS_2, "tcp");
 
       if (client == NULL)
 	return YPERR_YPBIND;
@@ -566,7 +563,7 @@ yp_all (const char *indomain, const char *inmap,
       __yp_unbind (ydb);
       ydb = NULL;
 
-      clnt = clnt_create_timed (server, YPPROG, YPVERS, "tcp", NULL);
+      clnt = clnt_create (server, YPPROG, YPVERS, "tcp");
       if (clnt == NULL)
         {
           res = YPERR_PMAP;

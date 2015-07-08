@@ -25,7 +25,11 @@ AC_PROG_LIBTOOL
 LT_INIT
 
 dnl Checks for libraries.
-PKG_CHECK_MODULES([TIRPC], [libtirpc])
+PKG_CHECK_MODULES([TIRPC], [libtirpc], [], [TIRPC_LIBS=""])
+
+if test -n "$TIRPC_LIBS"; then
+  AC_DEFINE(HAVE_TIRPC, 1, [Define to 1 if TIRPC is available])
+fi
 
 dnl internationalization macros
 AM_GNU_GETTEXT_VERSION([0.19.2])

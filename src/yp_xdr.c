@@ -30,7 +30,9 @@
  *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if defined(HAVE_TIRPC)
 #include <netconfig.h>
+#endif
 #include <rpc/types.h>
 #include <rpc/xdr.h>
 #include <rpcsvc/yp_prot.h>
@@ -281,6 +283,7 @@ xdr_ypbind2_setdom (XDR *xdrs, struct ypbind2_setdom *objp)
   return xdr_u_int (xdrs, &objp->ypsetdom_vers);
 }
 
+#if defined(HAVE_TIRPC)
 /* Same values in netconfig are u_long with TI-RPC on
    Linux, but u_int on Solaris */
 static bool_t
@@ -311,6 +314,7 @@ xdr_fake_u_int (XDR *xdrs, unsigned long *objp)
   return FALSE;
 }
 
+
 static bool_t
 xdr_netconfig (XDR *xdrs, struct netconfig *objp)
 {
@@ -335,8 +339,6 @@ xdr_netconfig (XDR *xdrs, struct netconfig *objp)
 		     8, sizeof (uint32_t), (xdrproc_t)xdr_u_int);
 }
 
-#undef xdr_rpcvers
-#define xdr_rpcvers(xdrs, versp) xdr_u_int32_t(xdrs, versp)
 
 bool_t
 xdr_ypbind3_binding (XDR *xdrs,  struct ypbind3_binding *objp)
@@ -386,6 +388,8 @@ xdr_ypbind3_setdom (XDR *xdrs, ypbind3_setdom *objp)
   return xdr_pointer (xdrs, (char **)&objp->ypsetdom_bindinfo,
 		      sizeof (struct ypbind3_binding), (xdrproc_t) xdr_ypbind3_binding);
 }
+
+#endif /* HAVE_TIRPC */
 
 #if 0 /* XXX */
 bool_t

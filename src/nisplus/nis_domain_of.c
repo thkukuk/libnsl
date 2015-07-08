@@ -20,7 +20,7 @@
 #include "config.h"
 #endif
 
-#include <rpcsvc/nis.h>
+#include "nis_intern.h"
 
 nis_name
 nis_domain_of (const_nis_name name)

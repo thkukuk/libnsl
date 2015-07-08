@@ -93,7 +93,7 @@ nis_name_of_r (const_nis_name name, char *buffer, size_t buflen)
 }
 
 
-static int __always_inline
+static int
 count_dots (const_nis_name str)
 {
   int count = 0;

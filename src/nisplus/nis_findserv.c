@@ -55,11 +55,21 @@ struct cu_data
  * Calls the pmap service remotely to do the lookup.
  * Returns 0 if no map exists.
  */
+#if !defined (HAVE_TIRPC)
+extern u_short __libc_rpc_getport (struct sockaddr_in *address,
+		 u_long program, u_long version, u_int protocol,
+		 time_t timeout_sec, time_t tottimeout_sec);
+#endif
 u_short
 __pmap_getnisport (struct sockaddr_in *address, u_long program,
 		   u_long version, u_int protocol)
 {
+#if defined (HAVE_TIRPC)
+  /* XXX this is not IPv6 ready, and timeout too long */
+  return pmap_getport (address, program, version, protocol);
+#else
   return __libc_rpc_getport (address, program, version, protocol, 1, 1);
+#endif /* HAVE_TIRPC */
 }
 
 /* This is now the public function, which should find the fastest server */

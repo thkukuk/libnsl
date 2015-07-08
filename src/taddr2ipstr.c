@@ -17,6 +17,8 @@
 #include "config.h"
 #endif
 
+#if defined(HAVE_TIRPC)
+
 #include <netdb.h>
 #include <arpa/inet.h>
 #include <stddef.h>
@@ -69,3 +71,5 @@ taddr2ipstr (const struct netconfig *nconf, const struct netbuf *nbuf,
 
   return buf;
 }
+
+#endif /* HAVE_TIRPC */

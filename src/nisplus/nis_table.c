@@ -163,7 +163,7 @@ get_tablepath (char *name, dir_binding *bptr)
 }
 
 
-nis_error
+static nis_error
 __follow_path (char **tablepath, char **tableptr, struct ib_request *ibreq,
 	       dir_binding *bptr)
 {
