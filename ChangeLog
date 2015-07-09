@@ -1,3 +1,8 @@
+2015-07-09  Thorsten Kukuk  <kukuk@thkukuk.de>
+
+	* src/yp_xdr.c: Include config.h
+	* src/do_ypcall.c: Disable ypbind3 support for SunRPC
+
 2015-07-08  Thorsten Kukuk  <kukuk@thkukuk.de>
 
 	* configure.ac: Check for tirpc or sunrpc

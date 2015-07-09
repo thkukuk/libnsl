@@ -49,6 +49,7 @@ static int const MAXTRIES = 2;
 static pthread_mutex_t ypbindlist_lock = PTHREAD_MUTEX_INITIALIZER;
 static dom_binding *ypbindlist = NULL;
 
+#if defined(HAVE_TIRPC)
 static const char *
 get_server_str (struct ypbind3_binding *ypb3, char *buf, size_t buflen)
 {
@@ -75,6 +76,7 @@ yp_bind_client_create_v3 (const char *domain, dom_binding *ysd,
   if (ysd->dom_client == NULL)
     clnt_pcreateerror ("yp_bind_client_create_v3");
 }
+#endif
 
 static void
 yp_bind_client_create_v2 (const char *domain, dom_binding *ysd,
@@ -94,6 +96,7 @@ yp_bind_file (const char *domain, dom_binding *ysd)
 {
   char path[sizeof (BINDINGDIR) + strlen (domain) + 3 * sizeof (unsigned) + 3];
 
+#if defined(HAVE_TIRPC)
   snprintf (path, sizeof (path), "%s/%s.%u", BINDINGDIR, domain, YPBINDVERS);
 
   FILE *in = fopen (path, "rce");
@@ -119,6 +122,7 @@ yp_bind_file (const char *domain, dom_binding *ysd)
       fclose (in);
     }
   else
+#endif /* HAVE_TIRPC */
     {
       int fd;
     version2:
@@ -145,6 +149,7 @@ yp_bind_ypbindprog (const char *domain, dom_binding *ysd)
 {
   CLIENT *client;
 
+#if defined (HAVE_TIRPC)
   client = clnt_create ("localhost", YPBINDPROG, YPBINDVERS, "tcp");
   if (client != NULL)
     {
@@ -188,6 +193,7 @@ yp_bind_ypbindprog (const char *domain, dom_binding *ysd)
 	return YPERR_YPSERV;
     }
   else
+#endif
     {
       struct ypbind2_resp ypbr;
 

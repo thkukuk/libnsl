@@ -26,6 +26,7 @@ noinst_HEADERS = internal.h libc-lock.h nisplus/nis_intern.h nisplus/nis_xdr.h
 lib_LTLIBRARIES = libnsl.la
 
 libnsl_la_LDFLAGS = -version-info 2:0:0 \
+	-Wl,--no-undefined \
 	-Wl,--version-script=$(srcdir)/libnsl.map
 libnsl_la_LIBADD = @TIRPC_LIBS@
 
