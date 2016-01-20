@@ -41,7 +41,7 @@ yp_master (const char *indomain, const char *inmap, char **outname)
 
   result = do_ypcall_tr (indomain, YPPROC_MASTER, (xdrproc_t) xdr_ypreq_nokey,
                          (caddr_t) &req, (xdrproc_t) xdr_ypresp_master,
-                         (caddr_t) &resp);
+                         (ypresp_val *) &resp);
 
   if (result != YPERR_SUCCESS)
     return result;

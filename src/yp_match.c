@@ -46,7 +46,7 @@ yp_match (const char *indomain, const char *inmap, const char *inkey,
 
   result = do_ypcall_tr (indomain, YPPROC_MATCH, (xdrproc_t) xdr_ypreq_key,
                          (caddr_t) &req, (xdrproc_t) xdr_ypresp_val,
-                         (caddr_t) &resp);
+                         (ypresp_val *) &resp);
 
   if (result != YPERR_SUCCESS)
     return result;

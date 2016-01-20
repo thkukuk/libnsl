@@ -453,15 +453,11 @@ do_ypcall (const char *domain, u_long prog, xdrproc_t xargs,
 /* Like do_ypcall, but translate the status value if necessary.  */
 int
 do_ypcall_tr (const char *domain, u_long prog, xdrproc_t xargs,
-	      caddr_t req, xdrproc_t xres, caddr_t resp)
+	      caddr_t req, xdrproc_t xres, ypresp_val *resp)
 {
-  int status = do_ypcall (domain, prog, xargs, req, xres, resp);
+  int status = do_ypcall (domain, prog, xargs, req, xres, (caddr_t)resp);
   if (status == YPERR_SUCCESS)
-    /* We cast to ypresp_val although the pointer could also be of
-       type ypresp_key_val or ypresp_master or ypresp_order or
-       ypresp_maplist.  But the stat element is in a common prefix so
-       this does not matter.  */
-    status = ypprot_err (((struct ypresp_val *) resp)->status);
+    status = ypprot_err (resp->status);
   return status;
 }
 

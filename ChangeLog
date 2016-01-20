@@ -1,3 +1,15 @@
+2016-01-20  Thorsten Kukuk  <kukuk@thkukuk.de>
+
+	* src/do_ypcall.c: Change resp argument of do_ypcall_tr from
+        caddr_t to ypresp_val.
+        * src/internal.h: Likewise.
+        * src/yp_maplist.c: Adjust call of do_ypcall_tr.
+        * src/yp_master.c: Likewise.
+        * src/yp_match.c: Likewise.
+        * src/yp_next.c: Likewise.
+        * src/yp_order.c: Likewise.
+	Based on patch by Jonathan Ben Avraham <yba@tkos.co.il>
+
 2015-07-09  Thorsten Kukuk  <kukuk@thkukuk.de>
 
 	* src/yp_xdr.c: Include config.h

@@ -48,7 +48,7 @@ yp_next (const char *indomain, const char *inmap, const char *inkey,
 
   result = do_ypcall_tr (indomain, YPPROC_NEXT, (xdrproc_t) xdr_ypreq_key,
                          (caddr_t) &req, (xdrproc_t) xdr_ypresp_key_val,
-                         (caddr_t) &resp);
+                         (ypresp_val *) &resp);
 
   if (result != YPERR_SUCCESS)
     return result;

@@ -35,7 +35,7 @@ yp_maplist (const char *indomain, struct ypmaplist **outmaplist)
 
   result = do_ypcall_tr (indomain, YPPROC_MAPLIST, (xdrproc_t) xdr_domainname,
                          (caddr_t) &indomain, (xdrproc_t) xdr_ypresp_maplist,
-                         (caddr_t) &resp);
+                         (ypresp_val *) &resp);
 
   if (result == YPERR_SUCCESS)
     {
