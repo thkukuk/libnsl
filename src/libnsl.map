@@ -67,3 +67,10 @@ LIBNSL_1.0 {
   local:
     *;
 };
+
+LIBNSL_1.0.1 {
+  global:
+    xdr_keydat;
+    xdr_valdat;
+    xdr_ypcall;
+} LIBNSL_1.0;

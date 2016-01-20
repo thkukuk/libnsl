@@ -440,6 +440,8 @@ struct ypresp_all {
 typedef struct ypresp_all ypresp_all;
 
 extern bool_t xdr_domainname (XDR *__xdrs, char ** __objp);
+extern bool_t xdr_keydat (XDR *__xdrs, keydat_t *__objp);
+extern bool_t xdr_valdat (XDR *__xdrs, valdat_t *__objp);
 extern bool_t xdr_ypall (XDR *__xdrs, struct ypall_callback * __objp);
 extern bool_t xdr_ypbind2_binding (XDR *__xdrs, struct ypbind2_binding * __objp);
 extern bool_t xdr_ypbind2_resp (XDR *__xdrs, struct ypbind2_resp * __objp);

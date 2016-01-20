@@ -1,4 +1,4 @@
-/* Modified and extended by Thorsten Kukuk <kukuk@thkukuk.de>, 2014 */
+/* Modified and extended by Thorsten Kukuk <kukuk@thkukuk.de>, 2016 */
 /*
  * Copyright (c) 2010, Oracle America, Inc.
  *
@@ -68,14 +68,14 @@ xdr_domainname (XDR *xdrs, char **objp)
   return xdr_string (xdrs, objp, XDRMAXNAME);
 }
 
-static bool_t /* XXX */
+bool_t
 xdr_keydat (XDR *xdrs, keydat_t *objp)
 {
   return xdr_bytes (xdrs, (char **) &objp->keydat_val,
 		    (u_int *) &objp->keydat_len, XDRMAXRECORD);
 }
 
-static bool_t /* XXX */
+bool_t
 xdr_valdat (XDR *xdrs, valdat_t *objp)
 {
   return xdr_bytes (xdrs, (char **) &objp->valdat_val,
@@ -395,7 +395,6 @@ xdr_ypbind3_setdom (XDR *xdrs, ypbind3_setdom *objp)
 
 #endif /* HAVE_TIRPC */
 
-#if 0 /* XXX */
 bool_t
 xdr_ypall(XDR *xdrs, struct ypall_callback *incallback)
 {
@@ -406,10 +405,10 @@ xdr_ypall(XDR *xdrs, struct ypall_callback *incallback)
      * Set up key/val struct to be used during the transaction.
      */
     memset(&out, 0, sizeof out);
-    out.key.keydat_val = key;
-    out.key.keydat_len = sizeof(key);
-    out.val.valdat_val = val;
-    out.val.valdat_len = sizeof(val);
+    out.keydat.keydat_val = key;
+    out.keydat.keydat_len = sizeof(key);
+    out.valdat.valdat_val = val;
+    out.valdat.valdat_len = sizeof(val);
 
     for (;;) {
 	bool_t more, status;
@@ -430,13 +429,12 @@ xdr_ypall(XDR *xdrs, struct ypall_callback *incallback)
 	 * error.
 	 */
 	if (status) {
-	    if ((*incallback->foreach)(out.stat,
-				       (char *)out.key.keydat_val, out.key.keydat_len,
-				       (char *)out.val.valdat_val, out.val.valdat_len,
+	    if ((*incallback->foreach)(out.status,
+				       (char *)out.keydat.keydat_val, out.keydat.keydat_len,
+				       (char *)out.valdat.valdat_val, out.valdat.valdat_len,
 				       incallback->data))
 		return TRUE;
 	} else
 	    return FALSE;
     }
 }
-#endif
