@@ -477,9 +477,6 @@ extern const char *taddr2ipstr (const struct netconfig *__nconf,
                                 char *__buf, size_t __buflen);
 extern unsigned short taddr2port (const struct netconfig *__nconf,
                                   const struct netbuf *__nbuf);
-extern struct ypbind3_binding *__host2ypbind3_binding (const char *__host);
-extern struct ypbind3_binding *__ypbind3_binding_dup (struct ypbind3_binding *__src);
-extern void __ypbind3_binding_free (struct ypbind3_binding *ypb);
 
 #ifdef __cplusplus
 }

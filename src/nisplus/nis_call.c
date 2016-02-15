@@ -796,7 +796,7 @@ __prepare_niscall (const_nis_name name, directory_obj **dirp,
 		   dir_binding *bptrp, unsigned int flags)
 {
   nis_error retcode = __nisfind_server (name, 1, dirp, bptrp, flags);
-  if (__glibc_unlikely (retcode != NIS_SUCCESS))
+  if (retcode != NIS_SUCCESS)
     return retcode;
 
   do

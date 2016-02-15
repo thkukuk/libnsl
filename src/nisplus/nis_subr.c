@@ -42,7 +42,7 @@ nis_leaf_of_r (const_nis_name name, char *buffer, size_t buflen)
   while (name[i] != '.' && name[i] != '\0')
     i++;
 
-  if (__glibc_unlikely (i >= buflen))
+  if (i >= buflen)
     {
       errno = ERANGE;
       return NULL;
@@ -124,7 +124,7 @@ nis_getnames (const_nis_name name)
 
   int count = 2;
   nis_name *getnames = malloc ((count + 1) * sizeof (char *));
-  if (__glibc_unlikely (getnames == NULL))
+  if (getnames == NULL)
       return NULL;
 
   /* Do we have a fully qualified NIS+ name ? If yes, give it back */
@@ -206,12 +206,12 @@ nis_getnames (const_nis_name name)
 		  count += 5;
 		  nis_name *newp = realloc (getnames,
 					    (count + 1) * sizeof (char *));
-		  if (__glibc_unlikely (newp == NULL))
+		  if (newp == NULL)
 		    goto free_null;
 		  getnames = newp;
 		}
 	      tmp = malloc (strlen (cptr) + local_domain_len + name_len + 2);
-	      if (__glibc_unlikely (tmp == NULL))
+	      if (tmp == NULL)
 		goto free_null;
 
 	      getnames[pos] = tmp;
@@ -241,7 +241,7 @@ nis_getnames (const_nis_name name)
 	      char *p;
 
 	      tmp = malloc (cplen + local_domain_len + name_len + 2);
-	      if (__glibc_unlikely (tmp == NULL))
+	      if (tmp == NULL)
 		goto free_null;
 
 	      p = __stpcpy (tmp, name);
@@ -257,7 +257,7 @@ nis_getnames (const_nis_name name)
 	      char *p;
 
 	      tmp = malloc (cplen + name_len + 3);
-	      if (__glibc_unlikely (tmp == NULL))
+	      if (tmp == NULL)
 		goto free_null;
 
 	      p = __mempcpy (tmp, name, name_len);
@@ -273,7 +273,7 @@ nis_getnames (const_nis_name name)
 	      count += 5;
 	      nis_name *newp = realloc (getnames,
 					(count + 1) * sizeof (char *));
-	      if (__glibc_unlikely (newp == NULL))
+	      if (newp == NULL)
 		goto free_null;
 	      getnames = newp;
 	    }

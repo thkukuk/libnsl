@@ -19,7 +19,8 @@ AM_CPPFLAGS = -I$(srcdir) @TIRPC_CFLAGS@ -DLOCALEDIR=\"$(localedir)\"
 rpcsvc_HEADERS = rpcsvc/ypclnt.h rpcsvc/ypupd.h rpcsvc/yp_prot.h \
 	rpcsvc/yp.x rpcsvc/nis_callback.h rpcsvc/nis.h \
 	rpcsvc/nis_object.x rpcsvc/nis.x rpcsvc/nis_callback.x \
-	rpcsvc/nislib.h rpcsvc/nis_tags.h
+	rpcsvc/nislib.h rpcsvc/nis_tags.h rpcsvc/yppasswd.x \
+	rpcsvc/yppasswd.h
 
 noinst_HEADERS = internal.h libc-lock.h nisplus/nis_intern.h nisplus/nis_xdr.h
 
@@ -33,7 +34,7 @@ libnsl_la_LIBADD = @TIRPC_LIBS@
 libnsl_la_SOURCES = yp_xdr.c do_ypcall.c ypprot_err.c yp_master.c \
 	yp_maplist.c yp_order.c yp_first.c yp_next.c yp_match.c  \
 	yperr_string.c ypbinderr_string.c yp_get_default_domain.c \
-	taddr2ipstr.c \
+	taddr2host.c taddr2ipstr.c taddr2port.c \
 	nisplus/nis_add.c nisplus/nis_addmember.c nisplus/nis_callback.c \
 	nisplus/nis_call.c nisplus/nis_checkpoint.c nisplus/nis_clone_dir.c \
 	nisplus/nis_clone_obj.c nisplus/nis_clone_res.c \

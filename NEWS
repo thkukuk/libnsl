@@ -1,5 +1,9 @@
 libnsl NEWS -- history of user-visible changes.
 
+Version 1.0.2
+* Add some missing header files and functions, remove 
+  obsolete prototypes from public headers
+
 Version 1.0.1
 * Enable more code disabled for old libtirpc versions
 

@@ -74,3 +74,10 @@ LIBNSL_1.0.1 {
     xdr_valdat;
     xdr_ypcall;
 } LIBNSL_1.0;
+
+LIBNSL_1.0.2 {
+  global:
+    taddr2host;
+    taddr2ipstr;
+    taddr2port;
+} LIBNSL_1.0.1;

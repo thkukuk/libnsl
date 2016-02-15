@@ -79,7 +79,7 @@ xdr_endpoint (XDR *xdrs, endpoint *objp)
   if (__builtin_expect (res, TRUE))
     {
       res = xdr_string (xdrs, &objp->family, ~0);
-      if (__glibc_likely (res))
+      if (res)
 	res = xdr_string (xdrs, &objp->proto, ~0);
     }
   return res;

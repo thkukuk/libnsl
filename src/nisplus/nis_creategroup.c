@@ -46,7 +46,7 @@ nis_creategroup (const_nis_name group, unsigned int flags)
 	return NIS_BADNAME;
 
       obj = calloc (1, sizeof (nis_object));
-      if (__glibc_unlikely (obj == NULL))
+      if (obj == NULL)
 	return NIS_NOMEMORY;
 
       obj->zo_oid.ctime = obj->zo_oid.mtime = time (NULL);

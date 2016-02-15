@@ -23,6 +23,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <rpc/xdr.h>
@@ -55,21 +56,17 @@ struct cu_data
  * Calls the pmap service remotely to do the lookup.
  * Returns 0 if no map exists.
  */
-#if !defined (HAVE_TIRPC)
-extern u_short __libc_rpc_getport (struct sockaddr_in *address,
-		 u_long program, u_long version, u_int protocol,
-		 time_t timeout_sec, time_t tottimeout_sec);
-#endif
 u_short
 __pmap_getnisport (struct sockaddr_in *address, u_long program,
 		   u_long version, u_int protocol)
 {
-#if defined (HAVE_TIRPC)
+#if 1
   /* XXX this is not IPv6 ready, and timeout too long */
   return pmap_getport (address, program, version, protocol);
 #else
   return __libc_rpc_getport (address, program, version, protocol, 1, 1);
 #endif /* HAVE_TIRPC */
+
 }
 
 /* This is now the public function, which should find the fastest server */
@@ -103,7 +100,7 @@ __nis_findfastest_with_timeout (dir_binding *bind,
   pings = malloc (sizeof (struct findserv_req) * pings_max);
   xid_seed = (u_int32_t) (time (NULL) ^ getpid ());
 
-  if (__glibc_unlikely (pings == NULL))
+  if (pings == NULL)
     return -1;
 
   memset (&sin, '\0', sizeof (sin));
@@ -132,7 +129,7 @@ __nis_findfastest_with_timeout (dir_binding *bind,
 		pings_max += 10;
 		new_pings = realloc (pings, sizeof (struct findserv_req) *
 				     pings_max);
-		if (__glibc_unlikely (new_pings == NULL))
+		if (new_pings == NULL)
 		  {
 		    free (pings);
 		    return -1;

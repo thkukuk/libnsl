@@ -279,18 +279,18 @@ __nis_create_callback (int (*callback) (const_nis_name, const nis_object *,
 
   cb = (struct nis_cb *) calloc (1,
 				 sizeof (struct nis_cb) + sizeof (nis_server));
-  if (__glibc_unlikely (cb == NULL))
+  if (cb == NULL)
     goto failed;
   cb->serv = (nis_server *) (cb + 1);
   cb->serv->name = strdup (nis_local_principal ());
-  if (__glibc_unlikely (cb->serv->name == NULL))
+  if (cb->serv->name == NULL)
     goto failed;
   cb->serv->ep.ep_val = (endpoint *) calloc (2, sizeof (endpoint));
-  if (__glibc_unlikely (cb->serv->ep.ep_val == NULL))
+  if (cb->serv->ep.ep_val == NULL)
     goto failed;
   cb->serv->ep.ep_len = 1;
   cb->serv->ep.ep_val[0].family = strdup ("inet");
-  if (__glibc_unlikely (cb->serv->ep.ep_val[0].family == NULL))
+  if (cb->serv->ep.ep_val[0].family == NULL)
     goto failed;
   cb->callback = callback;
   cb->userdata = userdata;

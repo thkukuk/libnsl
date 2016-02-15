@@ -93,7 +93,7 @@ __create_ib_request (const_nis_name name, unsigned int flags)
       if (cptr != NULL)
 	*cptr++ = '\0';
 
-      if (__glibc_unlikely (val == NULL))
+      if (val == NULL)
 	{
 	  nis_free_request (ibreq);
 	  return NULL;
@@ -281,7 +281,7 @@ nis_list (const_nis_name name, unsigned int flags,
 	}
 
       while (__nisbind_connect (&bptr) != NIS_SUCCESS)
-	if (__glibc_unlikely (__nisbind_next (&bptr) != NIS_SUCCESS))
+	if (__nisbind_next (&bptr) != NIS_SUCCESS)
 	  {
 	    NIS_RES_STATUS (res) = NIS_NAMEUNREACHABLE;
 	    goto fail;
@@ -301,7 +301,7 @@ nis_list (const_nis_name name, unsigned int flags,
 			       (xdrproc_t) _xdr_nis_result,
 			       (caddr_t) res, RPCTIMEOUT);
 
-      if (__glibc_unlikely (clnt_status != RPC_SUCCESS))
+      if (clnt_status != RPC_SUCCESS)
 	NIS_RES_STATUS (res) = NIS_RPCERROR;
       else
 	switch (NIS_RES_STATUS (res))
@@ -315,7 +315,7 @@ nis_list (const_nis_name name, unsigned int flags,
 		free (ibreq->ibr_name);
 		ibreq->ibr_name = NULL;
 		/* If we hit the link limit, bail.  */
-		if (__glibc_unlikely (count_links > NIS_MAXLINKS))
+		if (count_links > NIS_MAXLINKS)
 		  {
 		    NIS_RES_STATUS (res) = NIS_LINKNAMEERROR;
 		    ++done;
@@ -490,7 +490,7 @@ nis_list (const_nis_name name, unsigned int flags,
 		/* Try the next domainname if we don't follow a link.  */
 		free (ibreq->ibr_name);
 		ibreq->ibr_name = NULL;
-		if (__glibc_unlikely (count_links))
+		if (count_links)
 		  {
 		    NIS_RES_STATUS (res) = NIS_LINKNAMEERROR;
 		    ++done;
@@ -596,7 +596,7 @@ nis_add_entry (const_nis_name name, const nis_object *obj2, unsigned int flags)
 				   (caddr_t) ibreq,
 				   (xdrproc_t) _xdr_nis_result,
 				   (caddr_t) res, 0, NULL);
-  if (__glibc_unlikely (status != NIS_SUCCESS))
+  if (status != NIS_SUCCESS)
     NIS_RES_STATUS (res) = status;
 
   nis_free_request (ibreq);
@@ -653,7 +653,7 @@ nis_modify_entry (const_nis_name name, const nis_object *obj2,
 			 (xdrproc_t) _xdr_ib_request,
 			 (caddr_t) ibreq, (xdrproc_t) _xdr_nis_result,
 			 (caddr_t) res, 0, NULL);
-  if (__glibc_unlikely (status != NIS_SUCCESS))
+  if (status != NIS_SUCCESS)
     NIS_RES_STATUS (res) = status;
 
   nis_free_request (ibreq);
@@ -738,7 +738,7 @@ nis_first_entry (const_nis_name name)
 			 (caddr_t) ibreq, (xdrproc_t) _xdr_nis_result,
 			 (caddr_t) res, 0, NULL);
 
-  if (__glibc_unlikely (status != NIS_SUCCESS))
+  if (status != NIS_SUCCESS)
     NIS_RES_STATUS (res) = status;
 
   nis_free_request (ibreq);
@@ -781,7 +781,7 @@ nis_next_entry (const_nis_name name, const netobj *cookie)
 			 (caddr_t) ibreq, (xdrproc_t) _xdr_nis_result,
 			 (caddr_t) res, 0, NULL);
 
-  if (__glibc_unlikely (status != NIS_SUCCESS))
+  if (status != NIS_SUCCESS)
     NIS_RES_STATUS (res) = status;
 
   if (cookie != NULL)
