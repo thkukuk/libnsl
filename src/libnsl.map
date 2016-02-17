@@ -81,3 +81,14 @@ LIBNSL_1.0.2 {
     taddr2ipstr;
     taddr2port;
 } LIBNSL_1.0.1;
+
+LIBNSL_PRIVATE {
+  global:
+    __create_ib_request;
+    __do_niscall3;
+    __follow_path;
+    __nisbind_destroy;
+    __prepare_niscall;
+    _xdr_ib_request;
+    _xdr_nis_result;
+}
