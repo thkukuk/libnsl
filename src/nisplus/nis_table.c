@@ -25,8 +25,15 @@
 #include "nis_intern.h"
 #include "nis_xdr.h"
 
+/* this functions are internal, but used by libnss_nisplus plugin */
+extern struct ib_request *
+__create_ib_request (const_nis_name name, unsigned int flags);
+extern nis_error
+__follow_path (char **tablepath, char **tableptr, struct ib_request *ibreq,
+               dir_binding *bptr);
 
-static struct ib_request *
+
+struct ib_request *
 __create_ib_request (const_nis_name name, unsigned int flags)
 {
   struct ib_request *ibreq = calloc (1, sizeof (struct ib_request));
@@ -163,7 +170,7 @@ get_tablepath (char *name, dir_binding *bptr)
 }
 
 
-static nis_error
+nis_error
 __follow_path (char **tablepath, char **tableptr, struct ib_request *ibreq,
 	       dir_binding *bptr)
 {

@@ -1,3 +1,13 @@
+2016-02-17  Thorsten Kukuk  <kukuk@thkukuk.de>
+
+	* release version 1.0.3
+
+	* src/nisplus/nis_table.c: Remove static from some functions,
+	we want to export them for libnss_nisplus plugin.
+
+	* src/libnsl.map: Export some functions as LIBNSL_PRIVATE for the
+	libnss_nisplus plugin.
+
 2016-02-15  Thorsten Kukuk  <kukuk@thkukuk.de>
 
 	* release version 1.0.2
