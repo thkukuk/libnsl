@@ -1,5 +1,8 @@
 libnsl NEWS -- history of user-visible changes.
 
+Version 1.0.4
+* Make yppasswd.h compatible with glibc version
+
 Version 1.0.3
 * Export some internal functions marked as private for
   libnss_nisplus plugin
