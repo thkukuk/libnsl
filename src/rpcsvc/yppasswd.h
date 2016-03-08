@@ -13,7 +13,6 @@
 extern "C" {
 #endif
 
-#if 0
 struct passwd {
 	char *pw_name;
 	char *pw_passwd;
@@ -24,7 +23,6 @@ struct passwd {
 	char *pw_shell;
 };
 typedef struct passwd passwd;
-#endif
 
 struct yppasswd {
 	char *oldpass;
