@@ -1,5 +1,8 @@
 libnsl NEWS -- history of user-visible changes.
 
+Version 1.0.5
+* Fix some compiler warnings
+
 Version 1.0.4
 * Make yppasswd.h compatible with glibc version
 

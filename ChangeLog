@@ -1,4 +1,14 @@
+2017-02-23  Thorsten Kukuk  <kukuk@thkukuk.de>
+
+	* release version 1.0.5
+
+	* src/nisplus/nis_call.c (nis_server_cache_add): Add explicit braces.
+
+	* src/do_ypcall.c: Remove unused static variable UDPTIMEOUT.
+
 2016-03-08  Thorsten Kukuk  <kukuk@thkukuk.de>
+
+	* release version 1.0.4
 
 	* src/rpcsvc/yppasswd.h: define own struct passwd to be
 	compatible with glibc implementation.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Thorsten Kukuk
+/* Copyright (C) 2014, 2017 Thorsten Kukuk
    Author: Thorsten Kukuk <kukuk@suse.de>
 
    This library is free software: you can redistribute it and/or
@@ -44,7 +44,6 @@ struct dom_binding
 typedef struct dom_binding dom_binding;
 
 static const struct timeval RPCTIMEOUT = {25, 0};
-static const struct timeval UDPTIMEOUT = {5, 0};
 static int const MAXTRIES = 2;
 static pthread_mutex_t ypbindlist_lock = PTHREAD_MUTEX_INITIALIZER;
 static dom_binding *ypbindlist = NULL;
