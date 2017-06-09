@@ -23,6 +23,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdint.h>
 #include <libintl.h>
 #include <rpc/rpc.h>
 #include <rpc/auth.h>
