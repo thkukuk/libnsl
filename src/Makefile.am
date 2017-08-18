@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2015 Thorsten Kukuk, Germany
+# Copyright (c) 2015, 2017 Thorsten Kukuk, Germany
 #
 # Author: Thorsten Kukuk <kukuk@thkukuk.de>
 #
@@ -17,7 +17,7 @@ AM_CFLAGS = @WARNFLAGS@ -D_REENTRANT=1
 AM_CPPFLAGS = -I$(srcdir) @TIRPC_CFLAGS@ -DLOCALEDIR=\"$(localedir)\"
 
 rpcsvc_HEADERS = rpcsvc/ypclnt.h rpcsvc/ypupd.h rpcsvc/yp_prot.h \
-	rpcsvc/yp.x rpcsvc/nis_callback.h rpcsvc/nis.h \
+	rpcsvc/yp.x rpcsvc/yp.h rpcsvc/nis_callback.h rpcsvc/nis.h \
 	rpcsvc/nis_object.x rpcsvc/nis.x rpcsvc/nis_callback.x \
 	rpcsvc/nislib.h rpcsvc/nis_tags.h rpcsvc/yppasswd.x \
 	rpcsvc/yppasswd.h
