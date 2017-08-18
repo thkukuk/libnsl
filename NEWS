@@ -1,5 +1,9 @@
 libnsl NEWS -- history of user-visible changes.
 
+Version 1.1.0
+* Add rpcgen generated yp.h
+* Fix problems with new glibc
+
 Version 1.0.5
 * Fix some compiler warnings
 
