@@ -482,7 +482,7 @@ rec_dirsearch (const_nis_name name, directory_obj *dir, nis_error *status)
 	  }
 	while (nis_dir_cmp (domain, dir->do_name) != SAME_NAME);
 
-	cp = rawmemchr (leaf, '\0');
+	cp = (char *)leaf + strlen (leaf);
 	*cp++ = '.';
 	strcpy (cp, domain);
 
@@ -613,7 +613,8 @@ nis_server_cache_search (const_nis_name name, int search_parent,
 	if (ret == NULL)
 	  break;
 
-	addr = rawmemchr (nis_server_cache[i]->name, '\0') + 8;
+	addr = nis_server_cache[i]->name;
+	addr += strlen (addr) + 8;
 	addr = (char *) ((uintptr_t) addr & ~(uintptr_t) 7);
 	xdrmem_create (&xdrs, addr, nis_server_cache[i]->size, XDR_DECODE);
 	if (!_xdr_directory_obj (&xdrs, ret))

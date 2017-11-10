@@ -71,7 +71,7 @@ nis_local_directory (void)
 	__nisdomainname[0] = '\0';
       else
 	{
-	  char *cp = rawmemchr (__nisdomainname, '\0');
+	  char *cp = (char *)__nisdomainname + strlen (__nisdomainname);
 
 	  /* Missing trailing dot? */
 	  if (cp[-1] != '.')
@@ -162,7 +162,7 @@ nis_local_host (void)
 	__nishostname[0] = '\0';
       else
 	{
-	  char *cp = rawmemchr (__nishostname, '\0');
+	  char *cp = (char *)__nishostname + strlen (__nishostname);
 	  int len = cp - __nishostname;
 
 	  /* Hostname already fully qualified? */
