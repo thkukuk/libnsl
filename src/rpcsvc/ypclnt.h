@@ -20,8 +20,6 @@
 #ifndef	__RPCSVC_YPCLNT_H__
 #define	__RPCSVC_YPCLNT_H__
 
-#include <features.h>
-
 /* Some defines */
 #define YPERR_SUCCESS	0		/* There is no error */
 #define	YPERR_BADARGS	1		/* Args to function are bad */
@@ -47,7 +45,9 @@
 #define	YPOP_DELETE	3		/* Delete this entry */
 #define	YPOP_STORE	4		/* Add, or change */
 
-__BEGIN_DECLS
+#ifdef  __cplusplus
+extern "C" {
+#endif
 
 /* struct ypall_callback * is the arg which must be passed to yp_all.  */
 struct ypall_callback
@@ -58,32 +58,34 @@ struct ypall_callback
   };
 
 /* External NIS client function references.  */
-extern int yp_bind (const char *) __THROW;
-extern void yp_unbind (const char *) __THROW;
-extern int yp_get_default_domain (char **) __THROW;
+extern int yp_bind (const char *);
+extern void yp_unbind (const char *);
+extern int yp_get_default_domain (char **);
 extern int yp_match (const char *, const char *, const char *,
-		     const int, char **, int *) __THROW;
+		     const int, char **, int *);
 extern int yp_first (const char *, const char *, char **,
-		     int *, char **, int *) __THROW;
+		     int *, char **, int *);
 extern int yp_next (const char *, const char *, const char *,
-		    const int, char **, int *, char **, int *) __THROW;
-extern int yp_master (const char *, const char *, char **) __THROW;
-extern int yp_order (const char *, const char *, unsigned int *) __THROW;
+		    const int, char **, int *, char **, int *);
+extern int yp_master (const char *, const char *, char **);
+extern int yp_order (const char *, const char *, unsigned int *);
 extern int yp_all (const char *, const char *,
-		   const struct ypall_callback *) __THROW;
-extern const char *yperr_string (const int) __THROW;
-extern const char *ypbinderr_string (const int) __THROW;
-extern int ypprot_err (const int) __THROW;
+		   const struct ypall_callback *);
+extern const char *yperr_string (const int);
+extern const char *ypbinderr_string (const int);
+extern int ypprot_err (const int);
 extern int yp_update (char *, char *, unsigned int,  char *,
-		      int, char *, int) __THROW;
+		      int, char *, int);
 
 #if 0
-extern int yp_maplist (const char *, struct ypmaplist **) __THROW;
+extern int yp_maplist (const char *, struct ypmaplist **);
 #endif
 
 /* This functions exists only under BSD and Linux systems.  */
-extern int __yp_check (char **) __THROW;
+extern int __yp_check (char **);
 
-__END_DECLS
+#ifdef  __cplusplus
+}
+#endif
 
 #endif	/* __RPCSVC_YPCLNT_H__ */

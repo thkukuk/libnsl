@@ -19,8 +19,6 @@
 #ifndef __NIS_XDR_H
 #define __NIS_XDR_H 1
 
-#include <features.h>
-
 extern  bool_t _xdr_nis_attr (XDR *, nis_attr*);
 extern  bool_t _xdr_nis_name (XDR *, nis_name*);
 extern  bool_t _xdr_nis_server (XDR *, nis_server*);

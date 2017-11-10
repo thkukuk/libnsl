@@ -19,8 +19,6 @@
 #ifndef __NIS_INTERN_H
 #define __NIS_INTERN_H
 
-#include <features.h>
-
 #define NIS_INTERNAL
 #include <rpcsvc/nis.h>
 
@@ -40,7 +38,9 @@
 #endif
 
 
-__BEGIN_DECLS
+#ifdef  __cplusplus
+extern "C" {
+#endif
 
 struct nis_cb
   {
@@ -83,6 +83,8 @@ extern struct nis_cb *__nis_create_callback
        const void *userdata, unsigned int flags);
 extern nis_error __nis_destroy_callback (struct nis_cb *cb);
 
-__END_DECLS
+#ifdef  __cplusplus
+}
+#endif
 
 #endif

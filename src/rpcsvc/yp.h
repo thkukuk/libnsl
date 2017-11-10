@@ -6,7 +6,6 @@
 #ifndef __RPCSVC_YP_H__
 #define __RPCSVC_YP_H__
 
-#include <features.h>
 #include <rpc/rpc.h>
 
 #define YPMAXRECORD 1024
@@ -204,7 +203,9 @@ typedef struct ypbind_setdom ypbind_setdom;
 #define YPPROG 100004
 #define YPVERS 2
 
-__BEGIN_DECLS
+#ifdef  __cplusplus
+extern "C" {
+#endif
 
 #define YPPROC_NULL 0
 extern  void * ypproc_null_2(void *, CLIENT *);
@@ -296,6 +297,8 @@ extern  bool_t xdr_ypbind_binding (XDR *, ypbind_binding*);
 extern  bool_t xdr_ypbind_resp (XDR *, ypbind_resp*);
 extern  bool_t xdr_ypbind_setdom (XDR *, ypbind_setdom*);
 
-__END_DECLS
+#ifdef  __cplusplus
+}
+#endif
 
 #endif /* !__RPCSVC_YP_H__ */

@@ -33,15 +33,15 @@
 #ifndef __RPCSVC_YPUPD_H__
 #define __RPCSVC_YPUPD_H__
 
-#include <features.h>
-
 #include <rpc/rpc.h>
 
 #define MAXMAPNAMELEN 255
 #define MAXYPDATALEN 1023
 #define MAXERRMSGLEN 255
 
-__BEGIN_DECLS
+#ifdef  __cplusplus
+extern "C" {
+#endif
 
 typedef struct {
 	u_int yp_buf_len;
@@ -83,6 +83,8 @@ extern  u_int * ypu_delete_1_svc (ypdelete_args *, struct svc_req *);
 extern  u_int * ypu_store_1 (ypupdate_args *, CLIENT *);
 extern  u_int * ypu_store_1_svc (ypupdate_args *, struct svc_req *);
 
-__END_DECLS
+#ifdef  __cplusplus
+}
+#endif
 
 #endif /* !__RPCSVC_YPUPD_H__ */
