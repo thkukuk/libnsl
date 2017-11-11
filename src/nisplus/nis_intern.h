@@ -37,7 +37,6 @@
 # define __NIS_PING_TIMEOUT_INCREMENT 3
 #endif
 
-
 #ifdef  __cplusplus
 extern "C" {
 #endif

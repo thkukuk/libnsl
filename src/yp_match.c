@@ -17,6 +17,7 @@
 #include "config.h"
 #endif
 
+#include <string.h>
 #include <rpcsvc/ypclnt.h>
 #include <rpcsvc/yp_prot.h>
 

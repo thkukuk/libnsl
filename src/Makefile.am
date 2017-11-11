@@ -29,7 +29,7 @@ lib_LTLIBRARIES = libnsl.la
 libnsl_la_LDFLAGS = -version-info 2:0:0 \
 	-Wl,--no-undefined \
 	-Wl,--version-script=$(srcdir)/libnsl.map
-libnsl_la_LIBADD = @TIRPC_LIBS@
+libnsl_la_LIBADD = @TIRPC_LIBS@ @LTLIBINTL@
 
 libnsl_la_SOURCES = yp_xdr.c do_ypcall.c ypprot_err.c yp_master.c \
 	yp_maplist.c yp_order.c yp_first.c yp_next.c yp_match.c  \

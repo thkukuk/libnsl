@@ -48,7 +48,7 @@ nis_leaf_of_r (const_nis_name name, char *buffer, size_t buflen)
       return NULL;
     }
 
-  *((char *) __mempcpy (buffer, name, i)) = '\0';
+  *((char *) mempcpy (buffer, name, i)) = '\0';
 
   return buffer;
 }
@@ -84,7 +84,7 @@ nis_name_of_r (const_nis_name name, char *buffer, size_t buflen)
       return NULL;
     }
 
-  *((char *) __mempcpy (buffer, name, diff - 1)) = '\0';
+  *((char *) mempcpy (buffer, name, diff - 1)) = '\0';
 
   if (diff - 1 == 0)
     return NULL;
@@ -191,7 +191,7 @@ nis_getnames (const_nis_name name)
 
   have_point = strchr (name, '.') != NULL;
 
-  cp = __strtok_r (path, ":", &saveptr);
+  cp = strtok_r (path, ":", &saveptr);
   while (cp)
     {
       if (strcmp (cp, "$") == 0)
@@ -244,13 +244,13 @@ nis_getnames (const_nis_name name)
 	      if (tmp == NULL)
 		goto free_null;
 
-	      p = __stpcpy (tmp, name);
+	      p = stpcpy (tmp, name);
 	      *p++ = '.';
-	      p = __mempcpy (p, cp, cplen);
+	      p = mempcpy (p, cp, cplen);
 	      --p;
 	      if (p[-1] != '.')
 		*p++ = '.';
-	      __stpcpy (p, local_domain);
+	      stpcpy (p, local_domain);
 	    }
 	  else
 	    {
@@ -260,9 +260,9 @@ nis_getnames (const_nis_name name)
 	      if (tmp == NULL)
 		goto free_null;
 
-	      p = __mempcpy (tmp, name, name_len);
+	      p = mempcpy (tmp, name, name_len);
 	      *p++ = '.';
-	      p = __mempcpy (p, cp, cplen);
+	      p = mempcpy (p, cp, cplen);
 	      if (p[-1] != '.')
 		*p++ = '.';
 	      *p = '\0';
@@ -280,11 +280,11 @@ nis_getnames (const_nis_name name)
 	  getnames[pos] = tmp;
 	  ++pos;
 	}
-      cp = __strtok_r (NULL, ":", &saveptr);
+      cp = strtok_r (NULL, ":", &saveptr);
     }
 
   if (pos == 0
-      && __asprintf (&getnames[pos++], "%s%s%s%s",
+      && asprintf (&getnames[pos++], "%s%s%s%s",
 		     name, name[name_len - 1] == '.' ? "" : ".",
 		     local_domain,
 		     local_domain[local_domain_len - 1] == '.' ? "" : ".") < 0)

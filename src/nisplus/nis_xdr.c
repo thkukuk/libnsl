@@ -29,6 +29,10 @@
    YP xdr functions, we don't make them public. */
 #include "nis_xdr.h"
 
+#ifndef __always_inline
+#define __always_inline __attribute__((__always_inline__))
+#endif
+
 static bool_t
 xdr_nis_attr (XDR *xdrs, nis_attr *objp)
 {

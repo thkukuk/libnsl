@@ -37,6 +37,7 @@
 #if defined(HAVE_TIRPC)
 #include <netconfig.h>
 #endif
+#include <string.h>
 #include <rpc/types.h>
 #include <rpc/xdr.h>
 #include <rpcsvc/yp_prot.h>
