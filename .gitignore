@@ -33,6 +33,7 @@ config.status
 libnsl-*.tar.bz2
 libnsl-*.tar.gz
 libtool
+ltmain.sh
 po/POTFILES
 po/stamp-po
 po/remove-potcdate.sed
