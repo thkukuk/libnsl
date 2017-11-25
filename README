@@ -10,8 +10,5 @@ be able to link against TI-RPC for IPv6 support.
 The NIS(YP) functions are still maintained, the NIS+ part is
 deprecated and should not be used anymore.
 
-Tar archives can be downloaded from:
-http://www.linux-nis.org/download/libnsl/
-
 The git repository can be found at:
 https://github.com/thkukuk/libnsl
