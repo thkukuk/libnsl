@@ -22,6 +22,8 @@ rpcsvc_HEADERS = rpcsvc/ypclnt.h rpcsvc/ypupd.h rpcsvc/yp_prot.h \
 	rpcsvc/nislib.h rpcsvc/nis_tags.h rpcsvc/yppasswd.x \
 	rpcsvc/yppasswd.h
 
+include_HEADERS = netdir.h
+
 noinst_HEADERS = internal.h libc-lock.h nisplus/nis_intern.h nisplus/nis_xdr.h
 
 lib_LTLIBRARIES = libnsl.la
