@@ -82,6 +82,11 @@ LIBNSL_1.0.2 {
     taddr2port;
 } LIBNSL_1.0.1;
 
+LIBNSL_1.3.0 {
+  global:
+    netdir_options;
+} LIBNSL_1.0.2;
+
 LIBNSL_PRIVATE {
   global:
     __create_ib_request;

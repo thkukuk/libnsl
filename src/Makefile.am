@@ -36,7 +36,7 @@ libnsl_la_LIBADD = @TIRPC_LIBS@ @LTLIBINTL@
 libnsl_la_SOURCES = yp_xdr.c do_ypcall.c ypprot_err.c yp_master.c \
 	yp_maplist.c yp_order.c yp_first.c yp_next.c yp_match.c  \
 	yperr_string.c ypbinderr_string.c yp_get_default_domain.c \
-	taddr2host.c taddr2ipstr.c taddr2port.c \
+	taddr2host.c taddr2ipstr.c taddr2port.c netdir.c \
 	nisplus/nis_add.c nisplus/nis_addmember.c nisplus/nis_callback.c \
 	nisplus/nis_call.c nisplus/nis_checkpoint.c nisplus/nis_clone_dir.c \
 	nisplus/nis_clone_obj.c nisplus/nis_clone_res.c \
