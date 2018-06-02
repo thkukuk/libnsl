@@ -47,6 +47,7 @@ static const struct timeval RPCTIMEOUT = {25, 0};
 static int const MAXTRIES = 2;
 static pthread_mutex_t ypbindlist_lock = PTHREAD_MUTEX_INITIALIZER;
 static dom_binding *ypbindlist = NULL;
+static __thread int from_yp_all = 0;
 
 #if defined(HAVE_TIRPC)
 static const char *
@@ -391,6 +392,12 @@ do_ypcall (const char *domain, u_long prog, xdrproc_t xargs,
 
   status = YPERR_YPERR;
 
+  /* if from_yp_call is set, we have a recursion from yp_all, means to
+     contact the NIS server, we need to do a NIS query first. Bail out
+     to avoid a deadlock or crash. */
+  if (from_yp_all == 1)
+    return status;
+
   pthread_mutex_lock (&ypbindlist_lock);
   ydb = ypbindlist;
   while (ydb != NULL)
@@ -549,6 +556,8 @@ yp_all (const char *indomain, const char *inmap,
   res = YPERR_YPERR;
 
  pthread_mutex_lock (&ypbindlist_lock);
+ from_yp_all = 1; /* We are inside a lock, tell other functions of
+		     the same thread. */
 
   while (try < MAXTRIES && res != YPERR_SUCCESS)
     {
@@ -601,6 +610,7 @@ yp_all (const char *indomain, const char *inmap,
     }
 
  out:
+  from_yp_all = 0;
   pthread_mutex_unlock (&ypbindlist_lock);
 
   if (server)
