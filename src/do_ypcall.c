@@ -1,4 +1,4 @@
-/* Copyright (C) 2014, 2017 Thorsten Kukuk
+/* Copyright (C) 2014, 2017, 2018 Thorsten Kukuk
    Author: Thorsten Kukuk <kukuk@suse.de>
 
    This library is free software: you can redistribute it and/or
@@ -389,6 +389,7 @@ do_ypcall (const char *domain, u_long prog, xdrproc_t xargs,
   dom_binding *ydb;
   int status;
   int saved_errno = errno;
+  static __thread int do_ypcall_rec = 0;
 
   status = YPERR_YPERR;
 
@@ -396,9 +397,14 @@ do_ypcall (const char *domain, u_long prog, xdrproc_t xargs,
      contact the NIS server, we need to do a NIS query first. Bail out
      to avoid a deadlock or crash. */
   if (from_yp_all == 1)
-    return status;
+    return YPERR_YPERR;
+
+  /* some if something else is calling NIS again */
+  if (do_ypcall_rec == 1)
+    return YPERR_YPERR;
 
   pthread_mutex_lock (&ypbindlist_lock);
+  do_ypcall_rec = 1;
   ydb = ypbindlist;
   while (ydb != NULL)
     {
@@ -411,6 +417,7 @@ do_ypcall (const char *domain, u_long prog, xdrproc_t xargs,
 				      resp, &ydb, 0);
 	      if (status == YPERR_SUCCESS)
 	        {
+		  do_ypcall_rec = 0;
 		  pthread_mutex_unlock (&ypbindlist_lock);
 		  errno = saved_errno;
 	          return status;
@@ -451,6 +458,7 @@ do_ypcall (const char *domain, u_long prog, xdrproc_t xargs,
 	free (ydb);
     }
 
+  do_ypcall_rec = 0;
   errno = saved_errno;
 
   return status;
@@ -554,6 +562,11 @@ yp_all (const char *indomain, const char *inmap,
 
   try = 0;
   res = YPERR_YPERR;
+
+  /* We are called by our self, which means something is resolved
+     via NIS which is necessary to contact the NIS server */
+  if (from_yp_all == 1)
+    return YPERR_YPERR;
 
  pthread_mutex_lock (&ypbindlist_lock);
  from_yp_all = 1; /* We are inside a lock, tell other functions of
