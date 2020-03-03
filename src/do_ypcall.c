@@ -110,16 +110,15 @@ yp_bind_file (const char *domain, dom_binding *ysd)
       memset (&ypb3, 0, sizeof (ypb3));
       status = xdr_ypbind3_binding (&xdrs, &ypb3);
       xdr_destroy (&xdrs);
+      fclose (in);
 
       if (!status)
         {
           xdr_free ((xdrproc_t)xdr_ypbind3_binding, (char *)&ypb3);
-	  fclose (in);
 	  goto version2;
         }
       yp_bind_client_create_v3 (domain, ysd, &ypb3);
       xdr_free ((xdrproc_t)xdr_ypbind3_binding, (char *)&ypb3);
-      fclose (in);
     }
   else
 #endif /* HAVE_TIRPC */
