@@ -12,7 +12,6 @@ AC_SUBST(VERSION)
 dnl Checks for programs.
 AC_PROG_CC
 AC_GNU_SOURCE
-AM_PROG_CC_C_O
 dnl If we're using gcc, we want warning flags
 dnl test -n "$GCC" && WARNFLAGS="-Wall"
 test -n "$GCC" && WARNFLAGS="-W -Wall -Wbad-function-cast -Wcast-align -Winline -Wnested-externs -Wshadow -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef"
