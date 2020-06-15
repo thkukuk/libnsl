@@ -31,6 +31,9 @@ if test -n "$TIRPC_LIBS"; then
 fi
 
 dnl internationalization macros
+m4_ifndef([AM_GNU_GETTEXT_REQUIRE_VERSION],
+  [m4_define([AM_GNU_GETTEXT_REQUIRE_VERSION], [])])
+AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.2])
 AM_GNU_GETTEXT_VERSION([0.19.2])
 AM_GNU_GETTEXT([external])
 
