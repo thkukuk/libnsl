@@ -3,7 +3,7 @@
 #
 # Author: Thorsten Kukuk <kukuk@thkukuk.de>
 #
-AUTOMAKE_OPTIONS = 1.9 gnu dist-bzip2 check-news
+AUTOMAKE_OPTIONS = 1.9 foreign dist-xz check-news
 ACLOCAL_AMFLAGS=-I m4
 CLEANFILES = *~
 
