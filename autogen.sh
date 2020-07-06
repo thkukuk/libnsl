@@ -1,8 +1,8 @@
 #!/bin/sh -x
 
-rm -fv ltmain.sh config.sub config.guess config.h.in
-# Update config.rpath, autotools are not doing this
-test -f /usr/share/gettext/config.rpath && cp /usr/share/gettext/config.rpath .
+rm -fv ltmain.sh config.sub config.guess config.h.in config.rpath
+gettextize -f
+rm -fv po/Makevars.template po/ChangeLog
 mkdir -p m4
 aclocal -I m4
 autoheader

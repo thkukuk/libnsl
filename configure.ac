@@ -34,7 +34,7 @@ dnl internationalization macros
 m4_ifndef([AM_GNU_GETTEXT_REQUIRE_VERSION],
   [m4_define([AM_GNU_GETTEXT_REQUIRE_VERSION], [])])
 AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.2])
-AM_GNU_GETTEXT_VERSION([0.19.2])
+AM_GNU_GETTEXT_VERSION([0.20.2])
 AM_GNU_GETTEXT([external])
 
 AC_OUTPUT([Makefile src/Makefile libnsl.pc po/Makefile.in])
