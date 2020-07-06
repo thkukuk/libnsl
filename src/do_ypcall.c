@@ -124,7 +124,9 @@ yp_bind_file (const char *domain, dom_binding *ysd)
 #endif /* HAVE_TIRPC */
     {
       int fd;
+#if defined(HAVE_TIRPC)
     version2:
+#endif
 
       snprintf (path, sizeof (path), "%s/%s.%u", BINDINGDIR, domain, 2);
       fd = open (path, O_RDONLY);
@@ -196,7 +198,9 @@ yp_bind_ypbindprog (const char *domain, dom_binding *ysd)
     {
       struct ypbind2_resp ypbr;
 
+#if defined(HAVE_TIRPC)
     try_v2:
+#endif
       /* Fallback to protocol v2 in error case */
       client = clnt_create ("localhost", YPBINDPROG, YPBINDVERS_2, "tcp");
 
