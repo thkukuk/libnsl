@@ -36,6 +36,7 @@ config.log
 config.status
 libnsl-*.tar.bz2
 libnsl-*.tar.gz
+libnsl-*.tar.xz
 libtool
 ltmain.sh
 po/POTFILES
