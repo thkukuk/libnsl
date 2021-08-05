@@ -106,9 +106,6 @@ count_dots (const_nis_name str)
   return count;
 }
 
-/* If we run out of memory, we don't give already allocated memory
-   free. The overhead for bringing getnames back in a safe state to
-   free it is to big. */
 nis_name *
 nis_getnames (const_nis_name name)
 {
@@ -274,7 +271,10 @@ nis_getnames (const_nis_name name)
 	      nis_name *newp = realloc (getnames,
 					(count + 1) * sizeof (char *));
 	      if (newp == NULL)
-		goto free_null;
+		{
+		  free (newp);
+		  goto free_null;
+		}
 	      getnames = newp;
 	    }
 	  getnames[pos] = tmp;
