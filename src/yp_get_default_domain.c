@@ -20,10 +20,11 @@
 
 #include <string.h>
 #include <unistd.h>
-#include <rpcsvc/nis.h>
 #include <rpcsvc/ypclnt.h>
 
 #include "libc-lock.h"
+
+#define NIS_MAXNAMELEN 1024
 
 __libc_lock_define_initialized (static, domainname_lock)
 static char ypdomainname[NIS_MAXNAMELEN + 1];
