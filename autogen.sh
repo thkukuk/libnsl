@@ -1,8 +1,8 @@
 #!/bin/sh -x
 
 rm -fv ltmain.sh config.sub config.guess config.h.in config.rpath
-gettextize -f
-rm -fv po/Makevars.template po/ChangeLog
+autopoint --force
+rm -fv po/Makevars.template po/ChangeLog m4/ChangeLog
 mkdir -p m4
 aclocal -I m4
 autoheader
