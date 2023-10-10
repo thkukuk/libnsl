@@ -15,7 +15,6 @@ LIBNSL_2.0 {
     xdr_ypbind3_setdom;
     xdr_ypbind_oldsetdom;
     xdr_ypbind_resptype;
-    xdr_ypcall;
     xdr_ypmap_parms;
     xdr_ypmaplist;
     xdr_yppushresp_xfr;
@@ -48,15 +47,4 @@ LIBNSL_2.0 {
 
   local:
     *;
-};
-
-LIBNSL_PRIVATE {
-  global:
-    __create_ib_request;
-    __do_niscall3;
-    __follow_path;
-    __nisbind_destroy;
-    __prepare_niscall;
-    _xdr_ib_request;
-    _xdr_nis_result;
 };
