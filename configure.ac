@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(libnsl, 2.0.0)
+AC_INIT(libnsl, 2.0.1)
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/do_ypcall.c])
 AM_CONFIG_HEADER(config.h)

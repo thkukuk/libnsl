@@ -1,5 +1,9 @@
 libnsl NEWS -- history of user-visible changes.
 
+Version 2.0.1
+* Remove unused internal symbols from libnsl.map
+* Remove NIS+ from documentation
+
 Version 2.0.0
 * Remove NIS+ code
 * Bump symbol version number
