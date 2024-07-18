@@ -82,7 +82,14 @@ static void
 yp_bind_client_create_v2 (const char *domain, dom_binding *ysd,
 			  struct ypbind2_resp *ypbr)
 {
-  ysd->server = strdup (inet_ntoa (ypbr->ypbind_respbody.ypbind_bindinfo.ypbind_binding_addr));
+  char buf[INET_ADDRSTRLEN];
+  if (!inet_ntop (AF_INET,
+                  &ypbr->ypbind_respbody.ypbind_bindinfo.ypbind_binding_addr,
+                  buf, sizeof(buf))) {
+    clnt_pcreateerror ("yp_bind_client_create_v2: cannot strigify IP address");
+    return;
+  }
+  ysd->server = strdup (buf);
   strncpy (ysd->dom_domain, domain, YPMAXDOMAIN);
   ysd->dom_domain[YPMAXDOMAIN] = '\0';
 
