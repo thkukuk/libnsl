@@ -45,7 +45,7 @@ typedef struct dom_binding dom_binding;
 
 static const struct timeval RPCTIMEOUT = {25, 0};
 static int const MAXTRIES = 2;
-static pthread_mutex_t ypbindlist_lock = PTHREAD_MUTEX_INITIALIZER;
+static pthread_mutex_t ypbindlist_lock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 static dom_binding *ypbindlist = NULL;
 static __thread int from_yp_all = 0;
 
