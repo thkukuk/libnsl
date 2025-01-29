@@ -13,6 +13,7 @@ automake
 autopoint
 libtool
 make
+libtirpc-dev
 $CC"
 
 retry_if_failed()
