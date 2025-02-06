@@ -17,6 +17,7 @@
 #include "config.h"
 #endif
 
+#include <ctype.h>
 #include <string.h>
 #include <rpcsvc/ypclnt.h>
 #include <rpcsvc/yp_prot.h>
@@ -40,6 +41,14 @@ yp_match (const char *indomain, const char *inmap, const char *inkey,
   req.map = (char *) inmap;
   req.keydat.keydat_val = (char *) inkey;
   req.keydat.keydat_len = inkeylen;
+
+  /* If matching hosts.byname make sure to use lowercase key */
+  if (strncmp(inmap, "hosts.byname", 12) == 0)
+    {
+      int i;
+      for(i = 0; i<inkeylen; i++)
+        req.keydat.keydat_val[i] = tolower((unsigned char) req.keydat.keydat_val[i]);
+    }
 
   *outval = NULL;
   *outvallen = 0;
