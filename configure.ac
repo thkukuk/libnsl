@@ -35,4 +35,14 @@ AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.2])
 AM_GNU_GETTEXT_VERSION([0.20.2])
 AM_GNU_GETTEXT([external])
 
+case "$host_os" in
+  darwin*)
+    DARWIN=yes
+    ;;
+  *)
+    DARWIN=no
+    ;;
+esac
+AM_CONDITIONAL([DARWIN], [test "$DARWIN" = yes])
+
 AC_OUTPUT([Makefile src/Makefile libnsl.pc po/Makefile.in])
