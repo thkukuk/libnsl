@@ -25,9 +25,13 @@ noinst_HEADERS = internal.h libc-lock.h
 
 lib_LTLIBRARIES = libnsl.la
 
+if DARWIN
+libnsl_la_LDFLAGS = -version-info 3:0:0
+else
 libnsl_la_LDFLAGS = -version-info 3:0:0 \
 	-Wl,--no-undefined \
 	-Wl,--version-script=$(srcdir)/libnsl.map
+endif
 libnsl_la_LIBADD = @TIRPC_LIBS@ @LTLIBINTL@
 
 libnsl_la_SOURCES = yp_xdr.c do_ypcall.c ypprot_err.c yp_master.c \
