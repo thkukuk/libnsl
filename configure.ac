@@ -1,8 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(libnsl, 2.0.1)
+AC_INIT([libnsl],[2.0.1])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/do_ypcall.c])
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_MACRO_DIR([m4])
 AC_PREFIX_DEFAULT(/usr)
 
@@ -11,16 +11,15 @@ AC_SUBST(VERSION)
 
 dnl Checks for programs.
 AC_PROG_CC
-AC_GNU_SOURCE
+AC_USE_SYSTEM_EXTENSIONS
 dnl If we're using gcc, we want warning flags
 dnl test -n "$GCC" && WARNFLAGS="-Wall"
 test -n "$GCC" && WARNFLAGS="-W -Wall -Wbad-function-cast -Wcast-align -Winline -Wnested-externs -Wshadow -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef"
 AC_SUBST(WARNFLAGS)
 AC_PROG_CPP
-AC_ISC_POSIX
+AC_SEARCH_LIBS([strerror],[cposix])
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
-AC_PROG_LIBTOOL
 LT_INIT
 
 dnl Checks for libraries.
@@ -35,4 +34,5 @@ AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.2])
 AM_GNU_GETTEXT_VERSION([0.20.2])
 AM_GNU_GETTEXT([external])
 
-AC_OUTPUT([Makefile src/Makefile libnsl.pc po/Makefile.in])
+AC_CONFIG_FILES([Makefile src/Makefile libnsl.pc po/Makefile.in])
+AC_OUTPUT
