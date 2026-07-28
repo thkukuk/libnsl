@@ -518,15 +518,24 @@ __xdr_ypresp_all (XDR *xdrs, struct ypresp_all_data *objp)
         {
         case YP_TRUE:
           {
-            char key[resp.ypresp_all_u.val.keydat.keydat_len + 1];
-            char val[resp.ypresp_all_u.val.valdat.valdat_len + 1];
             int keylen = resp.ypresp_all_u.val.keydat.keydat_len;
             int vallen = resp.ypresp_all_u.val.valdat.valdat_len;
+            char *key = malloc(keylen + 1);
+            char *val = malloc(vallen + 1);
+            bool_t res = FALSE;
 
             /* We are not allowed to modify the key and val data.
                But we are allowed to add data behind the buffer,
                if we don't modify the length. So add an extra NUL
                character to avoid trouble with broken code. */
+            if (key == NULL || val == NULL)
+              {
+                free (key);
+                free (val);
+                xdr_free ((xdrproc_t) xdr_ypresp_all, (char *) &resp);
+                objp->status = YP_YPERR;
+                return FALSE;
+              }
             objp->status = YP_TRUE;
 	    memcpy (key, resp.ypresp_all_u.val.keydat.keydat_val,
 		    keylen);
@@ -536,8 +545,12 @@ __xdr_ypresp_all (XDR *xdrs, struct ypresp_all_data *objp)
 	    val[vallen] = '\0';
 
             xdr_free ((xdrproc_t) xdr_ypresp_all, (char *) &resp);
-            if ((*objp->foreach) (objp->status, key, keylen,
-                                  val, vallen, objp->data))
+            res = (*objp->foreach) (objp->status, key, keylen,
+                                    val, vallen, objp->data);
+            free (key);
+            free (val);
+
+            if (res)
               return TRUE;
           }
           break;
